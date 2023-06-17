@@ -1,0 +1,60 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define N 5
+#define MIN 50
+#define MAX 100
+
+int main(){
+    srand(time(NULL));
+
+    int vetA[N],i,k,exist,aux;
+
+
+
+    i=0;
+    do{
+        vetA[i] = rand() % (MAX + 1 - MIN) + MIN;
+
+        exist=0;
+        for(k=0;k<i;k++){
+            if(vetA[k]==vetA[i]){
+                exist=1;
+                break;
+            }
+        }
+        if(exist==0){
+            i++;
+        }
+
+    }while(i<N);
+
+    printf("VECTOR A WITHOUT BUBBLE SORT\n");
+    for(i=0;i<N;i++){
+        printf("%d\n",vetA[i]);
+    }
+
+    for (k = 1; k < N; k++) {
+        printf("\n[%d] ", k);
+
+        for (i = N-1; i >0; i--) {
+            printf("%d, ", i);
+
+            if (vetA[i]>vetA[i - 1]) {
+                aux=vetA[i];
+                vetA[i]=vetA[i - 1];
+                vetA[i-1]=aux;
+            }
+        }
+    }
+    printf("\nVECTOR A WITH BUBBLE SORT\n");
+    for(i=0;i<N;i++){
+        printf("%d\n",vetA[i]);
+    }
+
+
+
+
+    return 0;
+}
