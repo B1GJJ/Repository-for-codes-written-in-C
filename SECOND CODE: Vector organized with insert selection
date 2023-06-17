@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+#define N 10
+#define MIN 50
+#define MAX 100
+
+int main(){
+
+    srand(time(NULL));
+
+    int vetA[N],i,j,exist,aux;
+
+    i=0;
+
+    do{
+        vetA[i] = rand() % (MAX + 1 - MIN) + MIN;
+
+        exist=0;
+        for(j=0;j<i;j++){
+            if(vetA[j]==vetA[i]){
+                exist=1;
+                break;
+            }
+        }
+        if(exist==0){
+            i++;
+        }
+
+    }while(i<N);
+
+    printf("VECTOR A WITHOUT INSERT SELECTION\n");
+    for(i=0;i<N;i++){
+        printf("%d\n",vetA[i]);
+    }
+
+    i=0;
+    j=1;
+    aux=0;
+
+    while (j < N){
+        aux = vetA[j];
+        i = j - 1;
+        while ((i >= 0) && (vetA[i] < aux)){
+            vetA[i + 1] = vetA[i];
+            i = i - 1;
+        }
+
+        vetA[i + 1] = aux;
+        j = j + 1;
+    }
+    printf("VECTOR A WITH INSERT SELECTION\n");
+    for(i=0;i<N;i++){
+        printf("%d\n",vetA[i]);
+
+    }
+
+   
+
+
+}
