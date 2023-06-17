@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define N 12
+#define MIN 10
+#define MAX 50
+
+int main(){
+
+    srand(time(NULL));
+    int vetA[N],i,j,exist;
+
+    i=0;
+    do{
+        vetA[i] = rand() % (MAX + 1 - MIN) + MIN;
+
+        exist=0;
+        for(j=0;j<i;j++){
+            if(vetA[j]==vetA[i]){
+                exist=1;
+                break;
+            }
+        }
+        if(exist==0){
+            i++;
+        }
+
+    }while(i<N);
+}
