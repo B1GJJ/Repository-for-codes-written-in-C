@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+#define N 6
+#define MIN 1
+#define MAX 60
+
+int main(){
+
+    srand((unsigned)time(NULL));
+
+    int vetGUESS[N],vetLOTTERY[N],i=0,j=0,exist;
+
+    for(i=0;i<N;){
+        printf("Type %d Numbers",N);
+        scanf("%d",&vetGUESS[i]);
+        if((vetGUESS[i]<=60)&&(vetGUESS[i]>=1)){
+            i++;
+        }else{
+            printf("Enter values of(1-60)\n");
+            continue;
+        }
+        
+    }
+    i=0;
+    do{
+        vetLOTTERY[i] = rand() % (MAX + 1 - MIN) + MIN;
+
+        exist=0;
+        for(j=0;j<i;j++){
+            if(vetLOTTERY[j]==vetLOTTERY[i]){
+                exist=1;
+                break;
+            }
+        }
+        if(exist==0){
+            i++;
+        }
+
+    }while(i<N);
+
+
+    for(i=0;i<N;i++){
+        
+        printf("GUESS %d\tLOTTERY %d\n",vetGUESS[i],vetLOTTERY[i]);
+    }
+    return 0;
+}
