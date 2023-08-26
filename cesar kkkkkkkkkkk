@@ -1,0 +1,62 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <ctype.h>
+#include <string.h>
+#include <math.h>
+#define TAM 100
+
+void cesar(char *msng, int deslocamento);
+
+void chave(char *msng, int deslocamento);
+
+int main(){
+    char msng[TAM];
+    int deslocamento,escolha=0;
+    printf("Digite a mensagem a ser Criptografada: ");
+    gets(msng);
+    fflush(stdin);
+
+    printf("Digite o valor de deslocamento: ");
+    scanf("%d",&deslocamento);
+
+    cesar(msng,deslocamento);
+
+    printf("Mensagem Criptografada: %s\n",msng);
+
+    printf("Deseja Descriptografar??? SIM(1) NAO(0): ");
+    scanf("%d",&escolha);
+
+    if(escolha==1){
+        chave(msng,deslocamento);
+
+        printf("Mensagem Descriptografada: %s\n",msng);   
+    }
+    
+
+    return 0;
+}
+
+void cesar(char *msng, int deslocamento){
+    int tam= strlen(msng);
+    int i;
+    for(i=0;i<tam;i++){
+        if(msng[i]>='a' && msng[i]<='z'){
+            msng[i] = (msng[i] - 'a' + deslocamento) % 26 + 'a';
+        }else if(msng[i]>='A' && msng[i]<='Z'){
+            msng[i] = (msng[i] - 'A' + deslocamento) % 26 + 'A';
+        }
+    }
+}
+
+void chave(char *msng, int deslocamento){
+   int tam= strlen(msng);
+    int i;
+    for(i=0;i<tam;i++){
+        if(msng[i]>='a' && msng[i]<='z'){
+            msng[i] = (msng[i] - 'a' - deslocamento) % 26 + 'a';
+        }else if(msng[i]>='A' && msng[i]<='Z'){
+            msng[i] = (msng[i] - 'A' - deslocamento) % 26 + 'A';
+        }
+    } 
+}
